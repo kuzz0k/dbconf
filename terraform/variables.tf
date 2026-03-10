@@ -12,7 +12,7 @@ variable "pm_api_token_secret" {
 }
 
 variable "vm_ip" {
-  type = string 
+  type = string
 }
 
 variable "vm_user" {

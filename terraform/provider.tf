@@ -6,7 +6,7 @@ terraform {
     }
     ansible = {
       source  = "ansible/ansible"
-      version = "~> 1.3"
+      version = "1.3.0"
     }
   }
 }
@@ -17,4 +17,9 @@ provider "proxmox" {
   api_token = "${var.pm_api_token_id}=${var.pm_api_token_secret}"
 
   insecure = true
+
+  ssh {
+    username = "root"
+    private_key = file("~/.ssh/id_rsa")
+  }
 }

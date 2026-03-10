@@ -1,0 +1,22 @@
+stages:
+  - terraform
+  - ansible
+
+deploy_infra:
+  stage: terraform
+  script:
+    - cd terraform
+    - terraform init
+    - terraform apply -auto-approve
+  artifacts:
+    paths:
+      - terraform/terraform.tfstate
+
+configure_db:
+  stage: ansible
+  script:
+    - cd ansible
+    - ansible-galaxy collection install cloud.terraform
+    - ansible-playbook -i inventory/hosts.terraform.yml playbooks/db-server-configuration.yml
+  dependencies:
+    - deploy_infra

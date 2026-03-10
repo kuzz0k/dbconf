@@ -1,3 +1,24 @@
+resource "proxmox_virtual_environment_file" "cloud_init" {
+  content_type = "snippets"
+  datastore_id = "local"
+  node_name    = "homelab"
+
+  source_raw {
+    file_name = "cloud-init-db.yml"
+    data      = <<-EOF
+      #cloud-config
+      users:
+        - name: ${var.vm_user}
+          groups: sudo
+          sudo: ALL=(ALL) NOPASSWD:ALL
+          shell: /bin/bash
+          lock_passwd: true
+          ssh_authorized_keys:
+            - ${trimspace(file("~/.ssh/id_rsa.pub"))}
+    EOF
+  }
+}
+
 resource "proxmox_virtual_environment_vm" "nodes" {
   agent {
     enabled = true
@@ -40,9 +61,7 @@ resource "proxmox_virtual_environment_vm" "nodes" {
       }
     }
 
-    user_account {
-      keys = [file("~/.ssh/id_rsa.pub")]
-    }
+    user_data_file_id = proxmox_virtual_environment_file.cloud_init.id
   }
 }
 
