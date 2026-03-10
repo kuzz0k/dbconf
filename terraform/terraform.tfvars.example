@@ -1,3 +1,7 @@
-pm_api_url      = "https://192.168.1.77:8006/api2/json"
-pm_api_token_id = "user@pve!mytoken"
-pm_api_token_secret = "ur_token"
+pm_api_url          = "https://192.168.1.77:8006/api2/json"
+pm_api_token_id     = "terrauser@pve!mytoken"
+pm_api_token_secret = "f5f30416-2fa1-4743-8a21-e7522f69f3b7"
+
+vm_ip   = "192.168.1.130"
+vm_user = "ubuntu"
+vm_name = "postgres_server"

@@ -1,0 +1,5 @@
+- name: Configure db server
+  hosts: db_servers
+  become: yes
+  tasks:
+    - docker_installation

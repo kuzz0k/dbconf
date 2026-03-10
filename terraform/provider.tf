@@ -4,6 +4,10 @@ terraform {
       source  = "bpg/proxmox"
       version = "0.66.1"
     }
+    ansible = {
+      source  = "ansible/ansible"
+      version = "~> 1.3"
+    }
   }
 }
 

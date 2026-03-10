@@ -1,8 +1,0 @@
----
-- name: Configure web servers
-  hosts: web
-  become: yes
-  roles:
-    - rsync
-    - docker_installation
-    - secure

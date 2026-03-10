@@ -35,7 +35,7 @@ resource "proxmox_virtual_environment_vm" "nodes" {
 
     ip_config {
       ipv4 {
-        address = "192.168.1.130/24"
+        address = "${var.vm_ip}/24"
         gateway = "192.168.1.254"
       }
     }
@@ -44,4 +44,17 @@ resource "proxmox_virtual_environment_vm" "nodes" {
       keys = [file("~/.ssh/id_rsa.pub")]
     }
   }
+}
+
+resource "ansible_host" "db" {
+  name   = var.vm_name
+  groups = ["db_servers"]
+
+  variables = {
+    ansible_host                 = var.vm_ip
+    ansible_user                 = var.vm_user
+    ansible_ssh_private_key_file = "~/.ssh/id_rsa"
+  }
+
+  depends_on = [proxmox_virtual_environment_vm.nodes]
 }
