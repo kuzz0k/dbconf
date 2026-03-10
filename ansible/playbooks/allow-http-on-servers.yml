@@ -1,0 +1,12 @@
+---
+- name: Allow http on runner
+  become: yes
+  hosts: runner
+  roles:
+    - insecure-registries
+
+- name: Allow http on web
+  become: yes
+  hosts: web
+  roles:
+    - insecure-registries

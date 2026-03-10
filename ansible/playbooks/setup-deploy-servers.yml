@@ -1,0 +1,12 @@
+---
+- name: Configure GitLab server
+  hosts: gitlab
+  become: yes
+  roles:
+    - gitlab_deploy
+
+- name: Configure Web servers
+  hosts: web
+  become: yes
+  roles:
+    - web_deploy

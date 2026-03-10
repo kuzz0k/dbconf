@@ -1,0 +1,7 @@
+---
+- name: Server configuration
+  hosts: gitlab
+  become: yes
+  roles:
+  - docker_installation
+  - gitlab_configuration

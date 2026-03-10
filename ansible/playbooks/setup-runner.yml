@@ -1,0 +1,8 @@
+---
+- name: Setup Gitlab Runner
+  hosts: runner
+  become: yes
+  roles:
+    - rsync
+    - docker_installation
+    - setup_runner
