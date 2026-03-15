@@ -11,14 +11,11 @@ variable "pm_api_token_secret" {
   sensitive = true
 }
 
-variable "vm_ip" {
-  type = string
-}
-
-variable "vm_user" {
-  type = string
-}
-
-variable "vm_name" {
-  type = string
+variable "vm" {
+  type = map(object({
+    vm_id = number
+    vm_ip = string
+    vm_user = string
+    vm_name = string
+  }))
 }
