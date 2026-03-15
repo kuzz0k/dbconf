@@ -19,7 +19,7 @@ provider "proxmox" {
   insecure = true
 
   ssh {
-    username = "root"
+    username    = "root"
     private_key = file("~/.ssh/id_rsa")
   }
 }

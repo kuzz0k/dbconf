@@ -13,8 +13,8 @@ variable "pm_api_token_secret" {
 
 variable "vm" {
   type = map(object({
-    vm_id = number
-    vm_ip = string
+    vm_id   = number
+    vm_ip   = string
     vm_user = string
     vm_name = string
   }))

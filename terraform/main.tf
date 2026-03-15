@@ -29,7 +29,7 @@ resource "proxmox_virtual_environment_vm" "nodes" {
     timeout = "2m"
   }
 
-  name      = each.key
+  name      = each.value.vm_name
   vm_id     = each.value.vm_id
   node_name = "homelab"
 
