@@ -1,0 +1,26 @@
+---
+- name: Create GitLab directory structure
+  file:
+    path: "/srv/pg"
+    state: directory
+    mode: '0750'
+
+- name: Create docker-compose.yml from template
+  template:
+    src: docker-compose.yml.j2
+    dest: /srv/pg/docker-compose.yml
+    mode: '0644'
+
+- name: Deploy pg via Docker Compose
+  community.docker.docker_compose_v2:
+    project_src: /srv/pg
+    state: present
+    pull: always
+
+- name: Wait for pg to be healthy
+  community.docker.docker_container_info:
+    name: postgres_db
+  register: result
+  until: result.container.State.Health.Status == "healthy"
+  retries: 30
+  delay: 15

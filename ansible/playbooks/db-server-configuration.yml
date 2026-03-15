@@ -3,3 +3,4 @@
   become: yes
   roles:
     - docker_installation
+    - pg_setup

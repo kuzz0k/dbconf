@@ -1,0 +1,13 @@
+---
+postgres_version: "15-alpine"
+pgadmin_version: "latest"
+
+db_user: "admin"
+db_name: "app_db"
+db_port: 5432
+
+db_password: "better_in_vault"
+
+pgadmin_email: "admin@example.com"
+pgadmin_password: "better_in_vault"
+pgadmin_port: 8080
